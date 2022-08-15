@@ -1,0 +1,33 @@
+{
+  "name": "fullstackopen-blog-app",
+  "version": "1.0.0",
+  "description": "Blog article saving app created as part of part 4 for the Fullstack Open course by the University of Helsinki",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludovico-chiavelli/fullstackopen-blog-app.git"
+  },
+  "author": "Ludovico Chiavelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ludovico-chiavelli/fullstackopen-blog-app/issues"
+  },
+  "homepage": "https://github.com/ludovico-chiavelli/fullstackopen-blog-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "eslint": "^8.22.0"
+  }
+}
