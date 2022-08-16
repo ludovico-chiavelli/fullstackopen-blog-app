@@ -41,9 +41,51 @@ const mostBlogs = (blogs) => {
   )
 }
 
+const mostLikes = (blogs) => {
+  let authorLikes = []
+
+  blogs.forEach((blog) => {
+    const authorInList = authorLikes.some(author => {
+      if (author.name === blog.author) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    if (authorInList) {
+      let currAuthor = authorLikes.find(author => {
+        if (author.name === blog.author) {
+          return true
+        } else {
+          return false
+        }
+      })
+
+      currAuthor.likes = currAuthor.likes + blog.likes
+    } else {
+      authorLikes.push(
+        {
+          name: blog.author,
+          likes: blog.likes
+        }
+      )
+    }
+  })
+
+  const mostLikedAuthor = _.maxBy(authorLikes, 'likes')
+  return (
+    {
+      author: mostLikedAuthor.name,
+      likes: mostLikedAuthor.likes
+    }
+  )
+}
+
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 }
