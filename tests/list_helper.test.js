@@ -7,7 +7,7 @@ test('dummy returns one', () => {
   expect(result).toBe(1)
 })
 
-describe('toatl likes', () => {
+describe('total likes', () => {
   test('of empty list is zero', () => {
     const blogs = []
   
