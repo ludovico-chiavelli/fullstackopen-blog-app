@@ -60,24 +60,34 @@ beforeEach(async () => {
   console.log('cleared')
 
   const blogObjects = initialBlogs.map(blog => new Blog(blog))
+  console.log('blogObjects created')
   const promiseArray = blogObjects.map(blog => blog.save())
+  console.log('blogObjects saved')
   await Promise.all(promiseArray)
 })
 
-describe('blog posts returned are', () => {
-  test('correct amount of posts in JSON format', async () => {
+describe('blog posts returned', () => {
+  test('have correct amount of posts in JSON format', async () => {
     const response = await api.get('/api/blogs')
     expect(200)
     expect(response.body).toHaveLength(initialBlogs.length)
   })
   
-  test('in JSON format', async () => {
+  test('are in JSON format', async () => {
     await api
       .get('/api/blogs')
       .expect(200)
       .expect('Content-Type', /application\/json/)
   })
 
+  test('have id property', async () => {
+    const response = await api.get('/api/blogs')
+    const blogs = response.body
+    expect(200)
+    blogs.forEach((blog) => {
+      expect(blog.id).toBeDefined()
+    })
+  })
 })
 
 afterAll(() => {
