@@ -127,6 +127,18 @@ describe('blog posts', () => {
       url: "http://test.com",
     })
   })
+  test('POSTed without url or title return HTTP code 400', async () => {
+    const erroRes = await api.post('/api/blogs')
+      .send({
+        _id: "5a422bc61b54a676223d17fc",
+        author: "Salam aleikum",
+        url: "http://test.com",
+        __v: 0
+      })
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+    expect(400)
+  })
 })
 
 afterAll(() => {
