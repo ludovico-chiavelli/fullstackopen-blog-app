@@ -143,6 +143,23 @@ describe('blog posts', () => {
     const result = await api.delete('/api/blogs/5a422a851b54a676234d17f7')
     expect(204)
   })
+  test('PUT request to update blog likes', async () => {
+    const result = await api.put('/api/blogs/5a422a851b54a676234d17f7')
+      .send({
+        likes: 200
+      })
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+    expect(200)
+    expect(result.body).toEqual({
+      id: "5a422a851b54a676234d17f7",
+      title: "React patterns",
+      author: "Michael Chan",
+      url: "https://reactpatterns.com/",
+      likes: 200,
+    })
+
+  })
 })
 
 afterAll(() => {
