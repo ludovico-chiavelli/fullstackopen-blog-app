@@ -106,6 +106,27 @@ describe('blog posts', () => {
     const amountRes = await api.get('/api/blogs')
     expect(amountRes.body.length).toEqual(initialBlogs.length + 1)
   })
+  test('undefined likes defaults to 0', async () => {
+    const createdRes = await api.post('/api/blogs')
+      .send({
+        _id: "5a422bc61b54a676223d17fc",
+        title: "Fictional",
+        author: "Salam aleikum",
+        url: "http://test.com",
+        __v: 0
+      })
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+    
+    expect(201)
+    expect(createdRes.body).toEqual({
+      id: "5a422bc61b54a676223d17fc",
+      title: "Fictional",
+      author: "Salam aleikum",
+      likes: 0,
+      url: "http://test.com",
+    })
+  })
 })
 
 afterAll(() => {
