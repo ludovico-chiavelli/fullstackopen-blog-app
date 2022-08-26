@@ -139,6 +139,10 @@ describe('blog posts', () => {
       .set('Accept', 'application/json')
     expect(400)
   })
+  test('DELETE blog post works', async () => {
+    const result = await api.delete('/api/blogs/5a422a851b54a676234d17f7')
+    expect(204)
+  })
 })
 
 afterAll(() => {
