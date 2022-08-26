@@ -44,14 +44,6 @@ const initialBlogs = [
     url: "http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html",
     likes: 0,
     __v: 0
-  },
-  {
-    _id: "5a422bc61b54a676234d17fc",
-    title: "Type wars",
-    author: "Robert C. Martin",
-    url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-    likes: 2,
-    __v: 0
   }
 ]
 
@@ -66,7 +58,7 @@ beforeEach(async () => {
   await Promise.all(promiseArray)
 })
 
-describe('blog posts returned', () => {
+describe('blog posts', () => {
   test('have correct amount of posts in JSON format', async () => {
     const response = await api.get('/api/blogs')
     expect(200)
@@ -87,6 +79,32 @@ describe('blog posts returned', () => {
     blogs.forEach((blog) => {
       expect(blog.id).toBeDefined()
     })
+  })
+  test('are created correctly', async () => {
+    const createdRes = await api
+      .post('/api/blogs')
+      .send({
+        _id: "5a422bc61b54a676234d17fc",
+        title: "Type wars",
+        author: "Robert C. Martin",
+        url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
+        likes: 2,
+        __v: 0
+      })
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+    
+    expect(201)
+    expect(createdRes.body).toEqual({
+      id: "5a422bc61b54a676234d17fc",
+      title: "Type wars",
+      author: "Robert C. Martin",
+      url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
+      likes: 2,
+    })
+
+    const amountRes = await api.get('/api/blogs')
+    expect(amountRes.body.length).toEqual(initialBlogs.length + 1)
   })
 })
 
