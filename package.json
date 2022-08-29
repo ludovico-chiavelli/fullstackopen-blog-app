@@ -4,10 +4,10 @@
   "description": "Blog article saving app created as part of part 4 for the Fullstack Open course by the University of Helsinki",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest",
-    "lint": "eslint ."
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "lint": "eslint .",
+    "test": "NODE_ENV=test jest --verbose --runInBand --forceExit"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.5.2",
     "morgan": "^1.10.0"
@@ -30,6 +31,7 @@
   "devDependencies": {
     "eslint": "^8.22.0",
     "jest": "^28.1.3",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4"
   }
 }
